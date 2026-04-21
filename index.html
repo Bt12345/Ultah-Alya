@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Alya 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --pink:#ff5fa2;
+      --pink2:#ff8cc1;
+      --pink3:#ffd8ea;
+      --soft:#fff4f9;
+      --purple:#d9c6ff;
+      --text:#6c4560;
+      --white:rgba(255,255,255,0.82);
+      --shadow:0 18px 40px rgba(231,84,155,.18);
+      --shadow-soft:0 10px 28px rgba(186,120,157,.14);
+      --radius-xl:28px;
+      --radius-lg:22px;
+      --radius-md:18px;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:"Poppins",sans-serif;
+      color:var(--text);
+      min-height:100vh;
+      overflow-x:hidden;
+      background:
+        radial-gradient(circle at top left,#ffe6f1 0%,transparent 25%),
+        radial-gradient(circle at top right,#efe5ff 0%,transparent 25%),
+        linear-gradient(135deg,#ffdcea,#fff6fa,#f4eeff);
+      position:relative;
+    }
+
+    h1,h2,h3{
+      font-family:"Fredoka",sans-serif;
+      letter-spacing:.2px;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    img{
+      display:block;
+      width:100%;
+    }
+
+    .container{
+      width:min(1120px,92%);
+      margin:auto;
+      position:relative;
+      z-index:2;
+    }
+
+    .floating-hearts{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:1;
+    }
+
+    .heart{
+      position:absolute;
+      bottom:-40px;
+      opacity:.8;
+      animation:floatUp linear forwards;
+    }
+
+    @keyframes floatUp{
+      0%{
+        transform:translateY(0) scale(1) rotate(0deg);
+        opacity:0;
+      }
+      15%{opacity:.9;}
+      100%{
+        transform:translateY(-120vh) scale(1.3) rotate(18deg);
+        opacity:0;
+      }
+    }
+
+    #confettiCanvas{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:3;
+    }
+
+    .overlay-start{
+      position:fixed;
+      inset:0;
+      z-index:50;
+      background:rgba(255, 240, 247, .8);
+      backdrop-filter:blur(6px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+
+    .overlay-card{
+      width:min(420px, 100%);
+      background:white;
+      border-radius:var(--radius-xl);
+      padding:28px 22px;
+      text-align:center;
+      box-shadow:var(--shadow);
+    }
+
+    .overlay-card h2{
+      color:var(--pink);
+      margin-bottom:10px;
+      font-size:2rem;
+    }
+
+    .overlay-card p{
+      line-height:1.75;
+      color:#7b6071;
+      margin-bottom:16px;
+      font-size:.97rem;
+    }
+
+    .navbar{
+      position:sticky;
+      top:12px;
+      z-index:15;
+      padding-top:12px;
+    }
+
+    .nav-wrap{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      padding:14px 16px;
+      background:var(--white);
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,.7);
+      border-radius:999px;
+      box-shadow:var(--shadow-soft);
+    }
+
+    .brand{
+      font-family:"Fredoka",sans-serif;
+      font-weight:700;
+      font-size:1.05rem;
+      color:var(--pink);
+      white-space:nowrap;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .nav-links a{
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:600;
+      font-size:.92rem;
+      transition:.25s ease;
+    }
+
+    .nav-links a:hover{
+      background:var(--soft);
+      color:var(--pink);
+    }
+
+    /* === HAMBURGER BUTTON === */
+    .hamburger{
+      display:none;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:5px;
+      width:40px;
+      height:40px;
+      border:none;
+      background:linear-gradient(135deg,#ffe0ef,#f9d0ff);
+      border-radius:12px;
+      cursor:pointer;
+      transition:.25s ease;
+      flex-shrink:0;
+    }
+
+    .hamburger:hover{
+      background:linear-gradient(135deg,#ffd0e8,#f0c0ff);
+      transform:scale(1.05);
+    }
+
+    .hamburger span{
+      display:block;
+      width:20px;
+      height:2.5px;
+      background:var(--pink);
+      border-radius:99px;
+      transition:.3s ease;
+      transform-origin:center;
+    }
+
+    .hamburger.open span:nth-child(1){
+      transform:translateY(7.5px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2){
+      opacity:0;
+      transform:scaleX(0);
+    }
+
+    .hamburger.open span:nth-child(3){
+      transform:translateY(-7.5px) rotate(-45deg);
+    }
+
+    /* === SIDEBAR OVERLAY === */
+    .sidebar-overlay{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(180,80,130,.22);
+      backdrop-filter:blur(3px);
+      z-index:100;
+      opacity:0;
+      transition:opacity .3s ease;
+    }
+
+    .sidebar-overlay.active{
+      display:block;
+      opacity:1;
+    }
+
+    /* === SIDEBAR === */
+    .sidebar{
+      position:fixed;
+      top:0;
+      left:0;
+      height:100%;
+      width:280px;
+      max-width:80vw;
+      background:linear-gradient(160deg,#fff8fc 0%,#fdeeff 100%);
+      border-right:1px solid rgba(255,180,220,.3);
+      box-shadow:8px 0 32px rgba(231,84,155,.18);
+      z-index:101;
+      transform:translateX(-100%);
+      transition:transform .35s cubic-bezier(.4,0,.2,1);
+      display:flex;
+      flex-direction:column;
+      padding:28px 20px 24px;
+      overflow-y:auto;
+    }
+
+    .sidebar.open{
+      transform:translateX(0);
+    }
+
+    .sidebar-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:28px;
+    }
+
+    .sidebar-brand{
+      font-family:"Fredoka",sans-serif;
+      font-weight:700;
+      font-size:1.1rem;
+      color:var(--pink);
+    }
+
+    .sidebar-close{
+      width:34px;
+      height:34px;
+      border:none;
+      background:rgba(255,140,193,.15);
+      border-radius:10px;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.2rem;
+      color:var(--pink);
+      transition:.2s ease;
+    }
+
+    .sidebar-close:hover{
+      background:rgba(255,100,170,.2);
+    }
+
+    .sidebar-divider{
+      height:1px;
+      background:linear-gradient(90deg,#ffd0e8,transparent);
+      margin-bottom:20px;
+    }
+
+    .sidebar-links{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
+    .sidebar-links a{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:13px 16px;
+      border-radius:16px;
+      font-weight:600;
+      font-size:1rem;
+      color:var(--text);
+      transition:.22s ease;
+      text-decoration:none;
+    }
+
+    .sidebar-links a:hover{
+      background:linear-gradient(90deg,#fff0f7,#f7e8ff);
+      color:var(--pink);
+      transform:translateX(4px);
+    }
+
+    .sidebar-links a .nav-icon{
+      font-size:1.15rem;
+      width:24px;
+      text-align:center;
+    }
+
+    .sidebar-footer{
+      margin-top:auto;
+      padding-top:20px;
+      text-align:center;
+      font-size:.82rem;
+      color:#b08099;
+      line-height:1.6;
+    }
+
+    .hero{
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding:28px 0 44px;
+    }
+
+    .hero-card{
+      width:100%;
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:24px;
+      align-items:center;
+      padding:34px;
+      border-radius:34px;
+      background:var(--white);
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,.7);
+      box-shadow:var(--shadow);
+      animation:fadeUp 1s ease;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(24px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    .badge{
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:999px;
+      background:linear-gradient(90deg,#fff2f8,#ffe2ef);
+      color:var(--pink);
+      font-weight:700;
+      margin-bottom:16px;
+      box-shadow:0 8px 18px rgba(231,84,155,.11);
+      font-size:.9rem;
+    }
+
+    .hero h1{
+      font-size:clamp(2.3rem,6vw,4.8rem);
+      line-height:1.05;
+      color:var(--pink);
+      margin-bottom:14px;
+    }
+
+    .hero p{
+      line-height:1.85;
+      color:#7e6174;
+      margin-bottom:20px;
+      font-size:1rem;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+
+    .btn{
+      border:none;
+      cursor:pointer;
+      padding:13px 20px;
+      border-radius:999px;
+      font-family:"Poppins",sans-serif;
+      font-size:.95rem;
+      font-weight:700;
+      transition:.25s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px) scale(1.02);
+    }
+
+    .btn-primary{
+      background:linear-gradient(90deg,#ff7db9,#e7549b);
+      color:#fff;
+      box-shadow:0 12px 24px rgba(231,84,155,.25);
+    }
+
+    .btn-secondary{
+      background:#fff;
+      color:var(--pink);
+      border:1px solid #ffd4e7;
+    }
+
+    .mini-note{
+      font-size:.92rem;
+      color:#a56b8a;
+      line-height:1.7;
+    }
+
+    .hero-photo-wrap{
+      position:relative;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .photo-frame{
+      width:min(360px,100%);
+      aspect-ratio:4/5;
+      background:linear-gradient(180deg,#fff8fc,#ffe7f2);
+      border-radius:30px;
+      padding:14px;
+      box-shadow:var(--shadow-soft);
+      transform:rotate(2deg);
+      position:relative;
+    }
+
+    .photo-frame img{
+      height:100%;
+      object-fit:cover;
+      border-radius:22px;
+      border:4px solid #fff;
+    }
+
+    .photo-frame::before,
+    .photo-frame::after{
+      content:"💖";
+      position:absolute;
+      font-size:1.4rem;
+      animation:pulse 2s infinite;
+    }
+
+    .photo-frame::before{
+      top:-8px;
+      left:-8px;
+    }
+
+    .photo-frame::after{
+      bottom:-8px;
+      right:-8px;
+    }
+
+    @keyframes pulse{
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.12)}
+    }
+
+    .sticker{
+      position:absolute;
+      background:#fff;
+      color:var(--pink);
+      padding:10px 14px;
+      border-radius:16px;
+      box-shadow:var(--shadow-soft);
+      font-size:.88rem;
+      font-weight:700;
+      animation:floatSticker 3s ease-in-out infinite;
+      z-index:2;
+    }
+
+    .sticker.one{
+      top:18px;
+      left:-8px;
+    }
+
+    .sticker.two{
+      bottom:24px;
+      right:-8px;
+      animation-delay:1s;
+    }
+
+    @keyframes floatSticker{
+      0%,100%{transform:translateY(0) rotate(-2deg)}
+      50%{transform:translateY(-8px) rotate(2deg)}
+    }
+
+    section{
+      padding:54px 0;
+    }
+
+    .section-header{
+      text-align:center;
+      margin-bottom:24px;
+    }
+
+    .section-header h2{
+      font-size:clamp(1.9rem,4vw,2.8rem);
+      color:var(--pink);
+      margin-bottom:10px;
+    }
+
+    .section-header p{
+      max-width:720px;
+      margin:auto;
+      line-height:1.8;
+      color:#86687a;
+      font-size:.98rem;
+    }
+
+    .glass-card{
+      background:var(--white);
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,.7);
+      border-radius:var(--radius-xl);
+      box-shadow:var(--shadow-soft);
+    }
+
+    .countdown-box{
+      padding:24px;
+    }
+
+    .countdown-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .count-item{
+      text-align:center;
+      padding:20px 10px;
+      border-radius:20px;
+      background:linear-gradient(180deg,#fff8fc,#ffe9f4);
+      border:1px solid #ffd5e7;
+    }
+
+    .count-item span{
+      display:block;
+      font-family:"Fredoka",sans-serif;
+      font-size:1.9rem;
+      color:var(--pink);
+      margin-bottom:6px;
+    }
+
+    .reasons-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+
+    .reason{
+      padding:20px;
+      border-radius:22px;
+      background:rgba(255,255,255,.84);
+      box-shadow:var(--shadow-soft);
+      transition:.25s ease;
+    }
+
+    .reason:hover{
+      transform:translateY(-5px);
+    }
+
+    .reason .icon{
+      font-size:2rem;
+      margin-bottom:10px;
+    }
+
+    .reason h3{
+      color:var(--pink);
+      margin-bottom:8px;
+      font-size:1.05rem;
+    }
+
+    .reason p{
+      line-height:1.8;
+      color:#7b6071;
+      font-size:.95rem;
+    }
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+    }
+
+    .gallery-card{
+      overflow:hidden;
+      border-radius:24px;
+      background:rgba(255,255,255,.84);
+      box-shadow:var(--shadow-soft);
+    }
+
+    .gallery-card img{
+      height:320px;
+      object-fit:cover;
+    }
+
+    .gallery-content{
+      padding:18px;
+    }
+
+    .gallery-content h3{
+      color:var(--pink);
+      margin-bottom:8px;
+    }
+
+    .gallery-content p{
+      line-height:1.8;
+      color:#7b6071;
+      font-size:.95rem;
+    }
+
+    .timeline{
+      display:grid;
+      gap:16px;
+    }
+
+    .timeline-item{
+      padding:20px;
+      border-radius:22px;
+      background:rgba(255,255,255,.84);
+      box-shadow:var(--shadow-soft);
+      border-left:6px solid #ff9fc9;
+    }
+
+    .timeline-item h3{
+      color:var(--pink);
+      margin-bottom:8px;
+    }
+
+    .timeline-item p{
+      line-height:1.8;
+      color:#7b6071;
+      font-size:.96rem;
+    }
+
+    .letter-box{
+      padding:26px;
+      line-height:1.95;
+      font-size:1rem;
+      color:#755d6f;
+    }
+
+    .letter-box strong{
+      color:var(--pink);
+    }
+
+    .surprise-wrap{
+      text-align:center;
+      padding:26px;
+    }
+
+    .surprise-box{
+      margin-top:20px;
+      display:none;
+      padding:22px;
+      border-radius:22px;
+      background:linear-gradient(180deg,#fff8fc,#ffe8f3);
+      border:1px solid #ffd3e7;
+      animation:fadeUp .6s ease;
+    }
+
+    .surprise-box h3{
+      color:var(--pink);
+      margin-bottom:10px;
+      font-size:1.4rem;
+    }
+
+    .surprise-box p{
+      line-height:1.9;
+      color:#775e70;
+      font-size:.98rem;
+    }
+
+    .music-player{
+      position:fixed;
+      right:16px;
+      bottom:16px;
+      z-index:20;
+      width:min(330px, calc(100vw - 24px));
+      background:rgba(255,255,255,.94);
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,.8);
+      border-radius:20px;
+      padding:12px;
+      box-shadow:0 12px 30px rgba(231,84,155,.18);
+    }
+
+    .music-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      margin-bottom:8px;
+      color:var(--pink);
+      font-weight:700;
+      font-size:.9rem;
+    }
+
+    .music-status{
+      font-size:.75rem;
+      color:#9b6b84;
+      font-weight:600;
+    }
+
+    .music-player audio{
+      width:100%;
+      margin-bottom:10px;
+      border-radius:14px;
+    }
+
+    .music-buttons{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .music-btn{
+      border:none;
+      cursor:pointer;
+      padding:10px 12px;
+      border-radius:999px;
+      background:linear-gradient(90deg,#ff7db9,#e7549b);
+      color:white;
+      font-weight:700;
+      font-family:"Poppins",sans-serif;
+      font-size:.88rem;
+      transition:.2s ease;
+      flex:1;
+    }
+
+    .music-btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .music-note{
+      margin-top:8px;
+      font-size:.8rem;
+      color:#9b6b84;
+      line-height:1.5;
+    }
+
+    footer{
+      text-align:center;
+      padding:36px 20px 120px;
+      color:#906f84;
+      position:relative;
+      z-index:2;
+    }
+
+    footer .love{
+      color:var(--pink);
+      font-weight:700;
+      margin-bottom:8px;
+      font-size:1rem;
+    }
+
+    @media (max-width:980px){
+      .hero{
+        min-height:auto;
+      }
+
+      .hero-card,
+      .reasons-grid,
+      .gallery-grid{
+        grid-template-columns:1fr;
+      }
+
+      .countdown-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media (max-width:680px){
+      .container{
+        width:min(100%, 94%);
+      }
+
+      .navbar{
+        top:8px;
+        padding-top:8px;
+      }
+
+      .nav-wrap{
+        border-radius:999px;
+        padding:10px 14px;
+      }
+
+      .brand{
+        font-size:.98rem;
+      }
+
+      /* Sembunyikan link navbar biasa, tampilkan hamburger di mobile */
+      .nav-links{
+        display:none;
+      }
+
+      .hamburger{
+        display:flex;
+      }
+
+      .hero{
+        padding:18px 0 28px;
+      }
+
+      .hero-card{
+        padding:20px 16px;
+        border-radius:26px;
+        gap:18px;
+      }
+
+      .badge{
+        font-size:.82rem;
+        padding:9px 12px;
+        margin-bottom:12px;
+      }
+
+      .hero h1{
+        font-size:2.15rem;
+        line-height:1.08;
+        margin-bottom:12px;
+      }
+
+      .hero p{
+        font-size:.95rem;
+        line-height:1.8;
+        margin-bottom:16px;
+      }
+
+      .hero-buttons{
+        flex-direction:column;
+        align-items:stretch;
+        gap:10px;
+      }
+
+      .btn{
+        width:100%;
+        font-size:.92rem;
+        padding:13px 16px;
+      }
+
+      .mini-note{
+        font-size:.86rem;
+      }
+
+      .photo-frame{
+        width:100%;
+        max-width:310px;
+        margin:auto;
+        aspect-ratio:4/4.9;
+        padding:12px;
+      }
+
+      .photo-frame img{
+        border-radius:18px;
+      }
+
+      .sticker{
+        font-size:.76rem;
+        padding:8px 10px;
+      }
+
+      .sticker.one{
+        top:10px;
+        left:0;
+      }
+
+      .sticker.two{
+        bottom:14px;
+        right:0;
+      }
+
+      section{
+        padding:40px 0;
+      }
+
+      .section-header{
+        margin-bottom:18px;
+      }
+
+      .section-header h2{
+        font-size:1.7rem;
+      }
+
+      .section-header p{
+        font-size:.93rem;
+        line-height:1.75;
+      }
+
+      .countdown-box,
+      .letter-box,
+      .surprise-wrap{
+        padding:18px;
+      }
+
+      .countdown-grid{
+        gap:10px;
+      }
+
+      .count-item{
+        padding:16px 8px;
+        border-radius:18px;
+        font-size:.88rem;
+      }
+
+      .count-item span{
+        font-size:1.45rem;
+      }
+
+      .reason,
+      .timeline-item,
+      .gallery-content{
+        padding:16px;
+      }
+
+      .reason h3,
+      .timeline-item h3,
+      .gallery-content h3{
+        font-size:1rem;
+      }
+
+      .reason p,
+      .timeline-item p,
+      .gallery-content p,
+      .surprise-box p{
+        font-size:.92rem;
+      }
+
+      .gallery-card{
+        border-radius:20px;
+      }
+
+      .gallery-card img{
+        height:230px;
+      }
+
+      .letter-box{
+        font-size:.94rem;
+        line-height:1.9;
+      }
+
+      .surprise-box{
+        padding:18px;
+        border-radius:18px;
+      }
+
+      .surprise-box h3{
+        font-size:1.25rem;
+      }
+
+      .music-player{
+        right:10px;
+        left:10px;
+        bottom:10px;
+        width:auto;
+        border-radius:18px;
+        padding:10px;
+      }
+
+      .music-top{
+        font-size:.84rem;
+      }
+
+      .music-buttons{
+        gap:6px;
+      }
+
+      .music-btn{
+        font-size:.82rem;
+        padding:9px 10px;
+      }
+
+      .music-note{
+        font-size:.76rem;
+      }
+
+      .overlay-card{
+        padding:24px 18px;
+        border-radius:22px;
+      }
+
+      .overlay-card h2{
+        font-size:1.7rem;
+      }
+
+      .overlay-card p{
+        font-size:.92rem;
+      }
+
+      footer{
+        padding:28px 16px 150px;
+        font-size:.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confettiCanvas"></canvas>
+  <div class="floating-hearts" id="floatingHearts"></div>
+
+  <div class="overlay-start" id="startOverlay">
+    <div class="overlay-card">
+      <h2>Untuk Alya 💖</h2>
+      <p>Klik tombol di bawah untuk membuka website ulang tahun ini sambil memulai musiknya.</p>
+      <button class="btn btn-primary" id="startExperience">Buka Website + Musik 🎵</button>
+    </div>
+  </div>
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+  <!-- Sidebar -->
+  <nav class="sidebar" id="mobileSidebar">
+    <div class="sidebar-head">
+      <div class="sidebar-brand">Alya 💕</div>
+      <button class="sidebar-close" onclick="closeSidebar()" aria-label="Tutup menu">✕</button>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-links">
+      <a href="#home" onclick="closeSidebar()"><span class="nav-icon">🏠</span>Home</a>
+      <a href="#countdown" onclick="closeSidebar()"><span class="nav-icon">⏰</span>Countdown</a>
+      <a href="#special" onclick="closeSidebar()"><span class="nav-icon">💞</span>Special</a>
+      <a href="#gallery" onclick="closeSidebar()"><span class="nav-icon">📸</span>Gallery</a>
+      <a href="#story" onclick="closeSidebar()"><span class="nav-icon">📖</span>Story</a>
+      <a href="#letter" onclick="closeSidebar()"><span class="nav-icon">💌</span>Letter</a>
+      <a href="#surprise" onclick="closeSidebar()"><span class="nav-icon">🎁</span>Surprise</a>
+    </div>
+    <div class="sidebar-footer">
+      Dibuat dengan 💖 penuh cinta<br>untuk Alya tercinta
+    </div>
+  </nav>
+
+  <div class="container">
+    <nav class="navbar">
+      <div class="nav-wrap">
+        <div class="brand">Alya kesayangankuww 💕</div>
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#countdown">Countdown</a>
+          <a href="#special">Special</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#story">Story</a>
+          <a href="#letter">Letter</a>
+          <a href="#surprise">Surprise</a>
+        </div>
+        <button class="hamburger" id="hamburgerBtn" onclick="toggleSidebar()" aria-label="Buka menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <section class="hero" id="home">
+      <div class="hero-card">
+        <div>
+          <div class="badge">Happy Birthday untuk perempuan spesial akuuw 💗</div>
+          <h1>Selamat Ulang Tahun, Sayang 🎂💗</h1>
+          <p>
+            Hari ini adalah hari yang sangat indah, karena seseorang yang paling manis,
+            paling lucu, paling cantik, dan paling berharga di hati lahir ke dunia.
+            Semoga semua hal baik selalu datang menghampiri kamu, sayang.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#letter" class="btn btn-primary">Baca Pesanku 💌</a>
+            <button class="btn btn-secondary" onclick="showSurprise()">Buka Kejutan 🎁</button>
+          </div>
+
+          <p class="mini-note">
+            Dibuat dengan penuh cinta oleh <b>NAMA_KAMU</b> untuk Alya 💖
+          </p>
+        </div>
+
+        <div class="hero-photo-wrap">
+          <div class="photo-frame">
+            <img src="images/alya1.jpg" alt="Foto Alya">
+          </div>
+          <div class="sticker one">cantik banget 🥺</div>
+          <div class="sticker two">my favorite girl 💕</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="countdown">
+      <div class="section-header">
+        <h2>Menuju Hari Spesial Alya ⏰</h2>
+        <p>Karena hari ulang tahun kamu penting banget, aku bikinin countdown lucu ini supaya momen spesialmu terasa makin manis.</p>
+      </div>
+
+      <div class="glass-card countdown-box">
+        <div id="birthdayMessage" style="text-align:center;font-weight:600;color:var(--pink);margin-bottom:8px;">
+          Menghitung waktu menuju hari spesial Alya...
+        </div>
+
+        <div class="countdown-grid">
+          <div class="count-item"><span id="days">00</span>Hari</div>
+          <div class="count-item"><span id="hours">00</span>Jam</div>
+          <div class="count-item"><span id="minutes">00</span>Menit</div>
+          <div class="count-item"><span id="seconds">00</span>Detik</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="special">
+      <div class="section-header">
+        <h2>Kenapa Alya Itu Spesial 💞</h2>
+        <p>Ada banyak alasan kenapa aku sayang kamu. Dan ini cuma sebagian kecil dari hal-hal yang bikin aku selalu bersyukur punya kamu.</p>
+      </div>
+
+      <div class="reasons-grid">
+        <div class="reason">
+          <div class="icon">😊</div>
+          <h3>Senyumnya Bikin Tenang</h3>
+          <p>Senyum kamu punya cara ajaib untuk bikin hariku yang berat jadi terasa jauh lebih ringan.</p>
+        </div>
+        <div class="reason">
+          <div class="icon">🌸</div>
+          <h3>Kamu Lembut dan Manis</h3>
+          <p>Cara kamu bicara, perhatian, dan bersikap, selalu bikin aku nyaman dan merasa dicintai.</p>
+        </div>
+        <div class="reason">
+          <div class="icon">🎀</div>
+          <h3>Lucu dan Gemas</h3>
+          <p>Tingkah kamu yang lucu, manja, dan menggemaskan itu yang sering bikin aku senyum-senyum sendiri.</p>
+        </div>
+        <div class="reason">
+          <div class="icon">💖</div>
+          <h3>Kamu Sangat Berarti</h3>
+          <p>Bukan cuma spesial, tapi kamu juga jadi salah satu alasan terbesar kenapa hidupku terasa lebih indah.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="section-header">
+        <h2>Galeri Manis Kita 📸</h2>
+        <p>Dua foto ini menyimpan kenangan yang cantik. Tempat kecil untuk mengingat momen manis bersama Alya.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-card">
+          <img src="images/alya1.jpg" alt="Foto Alya 1">
+          <div class="gallery-content">
+            <h3>Momen Favorit Pertama 💗</h3>
+            <p>Foto ini bisa jadi simbol dari salah satu hari paling menyenangkan, paling hangat, dan paling manis yang pernah kita lewati.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <img src="images/alya2.jpg" alt="Foto Alya 2">
+          <div class="gallery-content">
+            <h3>Momen Favorit Kedua ✨</h3>
+            <p>Dari foto ini, aku selalu ingat betapa bahagianya bisa punya waktu dan kenangan yang indah bareng kamu.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="story">
+      <div class="section-header">
+        <h2>Cerita Kecil Tentang Kita 🩷</h2>
+        <p>Bagian ini bikin website terasa lebih personal. Kamu bisa ubah isi ceritanya sesuai kisah kalian.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3>Awal Kenal 🌷</h3>
+          <p>Dari awal kenal, ada sesuatu tentang Alya yang bikin hati ini nyaman. Sejak itu, semuanya terasa berbeda dan lebih indah.</p>
+        </div>
+        <div class="timeline-item">
+          <h3>Momen yang Bikin Jatuh Hati 💘</h3>
+          <p>Entah dari senyumnya, sifatnya, caranya perhatian, atau tingkah lucunya, perlahan Alya jadi seseorang yang sangat berarti.</p>
+        </div>
+        <div class="timeline-item">
+          <h3>Hari Ini 🎂</h3>
+          <p>Hari ini adalah hari untuk merayakan Alya. Hari untuk mengingat betapa berharganya dia, dan betapa bersyukurnya aku bisa mengenalnya.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="letter">
+      <div class="section-header">
+        <h2>Surat Untuk Alya 💌</h2>
+        <p>Ini versi yang lebih personal. Tinggal ganti beberapa bagian kalau kamu mau lebih spesial lagi.</p>
+      </div>
+
+      <div class="glass-card letter-box">
+        <p>
+          <strong>Untuk Alya tersayang,</strong><br><br>
+          Selamat ulang tahun yaa, sayangku. Hari ini adalah hari yang sangat spesial, karena hari ini dunia merayakan lahirnya seseorang yang begitu cantik, manis, lucu, lembut, dan sangat berharga buat aku.<br><br>
+          Terima kasih karena sudah hadir di hidupku. Terima kasih karena dengan caramu sendiri, kamu selalu bisa bikin hari-hariku terasa lebih hangat, lebih bahagia, dan lebih berarti.<br><br>
+          Aku berharap di umur kamu yang baru ini, semua hal baik selalu datang ke kamu. Semoga kamu selalu sehat, panjang umur, bahagia, dilancarkan semua urusannya, dan dimudahkan setiap langkah yang kamu ambil.<br><br>
+          Semoga senyum kamu selalu terjaga, hati kamu selalu tenang, dan setiap hari kamu dipenuhi cinta, kebahagiaan, dan hal-hal indah yang kamu pantas dapatkan.<br><br>
+          Jujur, salah satu hal favoritku di dunia ini adalah melihat kamu bahagia. Karena saat kamu bahagia, dunia terasa ikut indah buat aku.<br><br>
+          Alya, kamu itu spesial banget. Bukan cuma karena kamu cantik, tapi karena kamu punya hati yang hangat, cara yang lembut, tawa yang manis, dan kehadiran yang sangat berarti.<br><br>
+          Aku bersyukur banget bisa kenal kamu, bisa dekat sama kamu, dan bisa jadi seseorang yang merayakan hari spesialmu hari ini.<br><br>
+          Sekali lagi, selamat ulang tahun ya, cintaku. Semoga semua doa terbaik selalu mengiringi langkahmu. Dan semoga aku selalu bisa ada untuk bikin kamu tersenyum.<br><br>
+          <strong>Dari: NAMA_KAMU 💖</strong>
+        </p>
+      </div>
+    </section>
+
+    <section id="surprise">
+      <div class="section-header">
+        <h2>Kejutan Kecil Untuk Kamu 🎁</h2>
+        <p>Klik tombol ini yaa, sayang. Ada pesan manis spesial buat Alya.</p>
+      </div>
+
+      <div class="glass-card surprise-wrap">
+        <button class="btn btn-primary" onclick="showSurprise()">Klik Untuk Kejutan ✨</button>
+
+        <div class="surprise-box" id="surpriseBox">
+          <h3>Happy Birthday My Love 💕</h3>
+          <p>
+            Selamat ulang tahun, Alya. Semoga hari ini seindah senyum kamu, semanis cara kamu membuat aku bahagia, dan sespesial dirimu di hatiku.
+            Kamu bukan cuma seseorang yang aku sayang, tapi juga seseorang yang selalu ingin aku jaga, bahagiakan, dan rayakan setiap harinya.
+            <br><br>
+            I love you, Alya 💖
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="music-player">
+    <div class="music-top">
+      <span>🎵 Musik Untuk Alya</span>
+      <span class="music-status" id="musicStatus">Belum diputar</span>
+    </div>
+
+    <audio id="bgMusic" controls loop preload="auto">
+      <source src="music/lilin-kecil-saksi.mp3" type="audio/mpeg">
+      Browser kamu tidak mendukung audio.
+    </audio>
+
+    <div class="music-buttons">
+      <button class="music-btn" type="button" onclick="playMusic()">▶ Putar</button>
+      <button class="music-btn" type="button" onclick="pauseMusic()">⏸ Pause</button>
+    </div>
+
+    <p class="music-note">Kalau musik belum bunyi otomatis, klik tombol “Buka Website + Musik” atau tombol putar di sini 💖</p>
+  </div>
+
+  <footer>
+    <div class="love">Made with love by NAMA_KAMU 💗</div>
+    <p>Untuk Alya, perempuan paling cantik, manis, lucu, dan spesial.</p>
+  </footer>
+
+  <script>
+    const floatingHearts = document.getElementById("floatingHearts");
+    const heartSymbols = ["💖","💕","💗","💘","💝","🌸","✨"];
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (16 + Math.random() * 20) + "px";
+      heart.style.animationDuration = (5 + Math.random() * 6) + "s";
+      floatingHearts.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 11000);
+    }
+
+    setInterval(createHeart, 450);
+
+    const birthdayDate = new Date("April 19, 2026 00:00:00").getTime();
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+    const birthdayMessage = document.getElementById("birthdayMessage");
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = birthdayDate - now;
+
+      if (distance <= 0) {
+        daysEl.innerText = "00";
+        hoursEl.innerText = "00";
+        minutesEl.innerText = "00";
+        secondsEl.innerText = "00";
+        birthdayMessage.innerText = "Selamat ulang tahun Alya! Hari spesialnya sudah tiba 🎉";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / 1000 / 60) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      daysEl.innerText = String(days).padStart(2, "0");
+      hoursEl.innerText = String(hours).padStart(2, "0");
+      minutesEl.innerText = String(minutes).padStart(2, "0");
+      secondsEl.innerText = String(seconds).padStart(2, "0");
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    const music = document.getElementById("bgMusic");
+    const musicStatus = document.getElementById("musicStatus");
+    const startOverlay = document.getElementById("startOverlay");
+    const startExperience = document.getElementById("startExperience");
+
+    function setMusicStatus(text) {
+      musicStatus.textContent = text;
+    }
+
+    function playMusic() {
+      music.play()
+        .then(() => setMusicStatus("Sedang diputar"))
+        .catch(() => setMusicStatus("Klik tombol putar"));
+    }
+
+    function pauseMusic() {
+      music.pause();
+      setMusicStatus("Dijeda");
+    }
+
+    startExperience.addEventListener("click", async () => {
+      try {
+        music.volume = 0.7;
+        await music.play();
+        setMusicStatus("Sedang diputar");
+      } catch (err) {
+        setMusicStatus("Klik tombol putar");
+      }
+      startOverlay.style.display = "none";
+    });
+
+    music.addEventListener("play", () => setMusicStatus("Sedang diputar"));
+    music.addEventListener("pause", () => setMusicStatus("Dijeda"));
+    music.addEventListener("error", () => setMusicStatus("File musik tidak ditemukan"));
+
+    let surpriseShown = false;
+
+    function showSurprise() {
+      const box = document.getElementById("surpriseBox");
+      box.style.display = "block";
+      box.scrollIntoView({ behavior: "smooth", block: "center" });
+
+      if (!surpriseShown) {
+        startConfetti();
+        surpriseShown = true;
+      }
+
+      playMusic();
+    }
+
+    const canvas = document.getElementById("confettiCanvas");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    let confettiPieces = [];
+    let confettiAnimation;
+
+    function randomRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function createConfettiPiece() {
+      const colors = ["#ff7ab8","#ffd166","#7bdff2","#b2f7ef","#cdb4ff","#ff99c8"];
+      return {
+        x: randomRange(0, canvas.width),
+        y: randomRange(-canvas.height, 0),
+        w: randomRange(8, 14),
+        h: randomRange(10, 18),
+        color: colors[Math.floor(Math.random() * colors.length)],
+        speed: randomRange(2, 6),
+        drift: randomRange(-1.5, 1.5),
+        rotate: randomRange(0, 360)
+      };
+    }
+
+    function startConfetti() {
+      confettiPieces = Array.from({ length: 180 }, createConfettiPiece);
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        confettiPieces.forEach(piece => {
+          piece.y += piece.speed;
+          piece.x += piece.drift;
+          piece.rotate += 3;
+
+          ctx.save();
+          ctx.translate(piece.x, piece.y);
+          ctx.rotate(piece.rotate * Math.PI / 180);
+          ctx.fillStyle = piece.color;
+          ctx.fillRect(-piece.w / 2, -piece.h / 2, piece.w, piece.h);
+          ctx.restore();
+
+          if (piece.y > canvas.height + 20) {
+            piece.y = -20;
+            piece.x = randomRange(0, canvas.width);
+          }
+        });
+
+        confettiAnimation = requestAnimationFrame(animate);
+      }
+
+      animate();
+
+      setTimeout(() => {
+        cancelAnimationFrame(confettiAnimation);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }, 5000);
+    }
+
+    /* ====== SIDEBAR MOBILE FUNCTIONS ====== */
+    function toggleSidebar() {
+      const sidebar = document.getElementById('mobileSidebar');
+      const overlay = document.getElementById('sidebarOverlay');
+      const btn = document.getElementById('hamburgerBtn');
+      const isOpen = sidebar.classList.contains('open');
+
+      if (isOpen) {
+        closeSidebar();
+      } else {
+        sidebar.classList.add('open');
+        overlay.classList.add('active');
+        btn.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeSidebar() {
+      const sidebar = document.getElementById('mobileSidebar');
+      const overlay = document.getElementById('sidebarOverlay');
+      const btn = document.getElementById('hamburgerBtn');
+
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+      btn.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    /* Tutup sidebar jika resize ke desktop */
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 680) {
+        closeSidebar();
+      }
+    });
+
+    /* Tutup sidebar dengan tombol Escape */
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeSidebar();
+    });
+  </script>
+</body>
+</html>

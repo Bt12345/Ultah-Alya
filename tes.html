@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tes Musik Lokal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+      background: #fff0f7;
+    }
+    button {
+      padding: 12px 18px;
+      border: none;
+      border-radius: 999px;
+      background: #e7549b;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 8px;
+    }
+    #status {
+      margin-top: 16px;
+      color: #7a5870;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tes Musik Lokal</h1>
+  <p>Kalau gagal, status di bawah akan kasih petunjuk.</p>
+
+  <audio id="music" controls preload="auto">
+    <source src="music/lilin-kecil-saksi.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung audio.
+  </audio>
+
+  <br>
+
+  <button onclick="playMusic()">▶ Putar</button>
+  <button onclick="pauseMusic()">⏸ Pause</button>
+
+  <p id="status">Status: siap</p>
+
+  <script>
+    const music = document.getElementById("music");
+    const status = document.getElementById("status");
+
+    function playMusic() {
+      music.play()
+        .then(() => {
+          status.textContent = "Status: musik berhasil diputar";
+        })
+        .catch((err) => {
+          console.log("Play error:", err);
+          status.textContent = "Status: gagal diputar";
+        });
+    }
+
+    function pauseMusic() {
+      music.pause();
+      status.textContent = "Status: dijeda";
+    }
+
+    music.addEventListener("loadeddata", () => {
+      status.textContent = "Status: file musik berhasil dimuat";
+    });
+
+    music.addEventListener("error", () => {
+      status.textContent = "Status: file tidak ditemukan / format rusak";
+    });
+  </script>
+</body>
+</html>
